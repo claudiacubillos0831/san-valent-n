@@ -83,6 +83,9 @@
         <img id="imagen-feliz" class="imagen-respuesta" src="si.png.jpeg" alt="Feliz">
     </div>
 
+    <!-- Sonido para cuando se selecciona "No" -->
+    <audio id="sonido-no" src="Rata.mp3.mp3" preload="auto"></audio>
+
     <script>
         function respuesta(acepta) {
             let imgTriste = document.getElementById("imagen-triste");
@@ -95,6 +98,8 @@
                 alert("¡Yay! Sabía que dirías que sí 😍💖");
                 imgFeliz.style.display = "block";
             } else {
+                // Reproduce el sonido cuando se selecciona "No"
+                document.getElementById("sonido-no").play();
                 alert("Oh no... 💔 Pero igual te amo mucho 🥺");
                 imgTriste.style.display = "block";
             }
