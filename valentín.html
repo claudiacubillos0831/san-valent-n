@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d63384;
+            margin: 0;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        .text {
+            font-size: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #d63384;
+        }
+        /* Estilos de corazones flotantes */
+        .heart {
+            position: absolute;
+            bottom: 0;
+            font-size: 30px;
+            animation: floatUp 4s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        /* Imagen oculta */
+        .imagen-respuesta {
+            display: none;
+            margin: 20px auto;
+            width: 200px;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Mi amor 💖</h2>
+        <p class="text">
+            "Mi amor, yo te dije que el día del amor son todos los días a tu lado, 
+            gracias por hacerme tan feliz cada día y amarme tan lindo como lo haces. 
+            Te amo siempre, amor mío."
+        </p>
+        <p class="text" style="animation-delay: 2s;">¿Quieres ser mi San Valentín este año? 🥺✨</p>
+        <div class="button-container">
+            <button class="btn" onclick="respuesta(true)">Sí 💕</button>
+            <button class="btn" onclick="respuesta(false)">No 😢</button>
+        </div>
+        <img id="imagen-triste" class="imagen-respuesta" src="raton.png.jpeg" alt="Tristeza">
+        <img id="imagen-feliz" class="imagen-respuesta" src="si.png.jpeg" alt="Feliz">
+    </div>
+
+    <script>
+        function respuesta(acepta) {
+            let imgTriste = document.getElementById("imagen-triste");
+            let imgFeliz = document.getElementById("imagen-feliz");
+
+            imgTriste.style.display = "none";
+            imgFeliz.style.display = "none";
+
+            if (acepta) {
+                alert("¡Yay! Sabía que dirías que sí 😍💖");
+                imgFeliz.style.display = "block";
+            } else {
+                alert("Oh no... 💔 Pero igual te amo mucho 🥺");
+                imgTriste.style.display = "block";
+            }
+        }
+
+        function crearCorazon() {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+
+            let size = Math.random() * 20 + 20;
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = size + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+
+        setInterval(crearCorazon, 300);
+    </script>
+
+</body>
+</html>
